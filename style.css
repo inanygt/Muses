@@ -1,0 +1,53 @@
+/* .fa-play {
+   padding: 0.3rem;
+   border-radius: 3px;
+   border: 1px solid black;
+   cursor: pointer;
+}
+
+.container {
+   width: 250px;
+   height: 200px;
+   display: flex;
+   justify-content: space-around;
+}
+
+.bar {
+   background-color: #720570;
+} */
+
+:root {
+   --yellow: #eae74b;
+   --red: #ff0000;
+   --purple: #9f2b68;
+   --orange: #ffa500;
+   --pink: #e44b8d;
+}
+
+.info {
+   font-size: 13px;
+}
+
+.row-head {
+   margin-top: 1rem;
+   margin-bottom: 3rem;
+}
+
+.row-info {
+   margin-bottom: 1rem;
+}
+
+/* Pies */
+
+/* #pie-1 {
+   background-color: black;
+   width: 24%;
+} */
+
+.btn {
+   margin: 0 0.3rem;
+}
+
+.row-btn {
+   margin-bottom: 1rem;
+}
