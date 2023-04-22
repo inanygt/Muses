@@ -16,7 +16,7 @@ var svg = d3
    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 // Create dummy data
-var data = { a: 5, b: 5, c: 5, d: 5 };
+var data = { a: 6, b: 2, c: 4, d: 4 };
 
 // set the color scale
 var color = d3

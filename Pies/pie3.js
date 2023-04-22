@@ -22,7 +22,7 @@ var data = { a: 5, b: 5, c: 5, d: 5 };
 var color = d3
    .scaleOrdinal()
    .domain(data)
-   .range(["#eae74b", "#eae74b", "#9f2b68", "#ff0000"]);
+   .range(["#e44b8d", "#e44b8d", "#ffa500", "#eae74b"]);
 
 // Compute the position of each group on the pie:
 var pie = d3.pie().value(function (d) {

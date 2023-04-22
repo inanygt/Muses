@@ -13,6 +13,8 @@ stop.addEventListener("click", function () {
 
 let timerInterval;
 let seconds = 0;
+let bpmDuration = 2; // duration of each beat in seconds
+let beatsElapsed = 0;
 
 function startTimer() {
    clearInterval(timerInterval); // clear any existing intervals
@@ -22,7 +24,9 @@ function startTimer() {
 function stopTimer() {
    clearInterval(timerInterval); // stop the timer interval
    seconds = 0; // reset seconds
+   beatsElapsed = 0; // reset beatsElapsed
    updateTimer(); // update timer display
+   updateBPM(); // update bpm display
 }
 
 function updateTimer() {
@@ -34,4 +38,11 @@ function updateTimer() {
       "timer"
    ).textContent = `00:${minutes}:${remainingSeconds}`;
    seconds++;
+   beatsElapsed = seconds / bpmDuration;
+   updateBPM();
+}
+
+function updateBPM() {
+   const bpm = Math.round(beatsElapsed * 60);
+   document.getElementById("bpm").textContent = `BPM: ${bpm}`;
 }
