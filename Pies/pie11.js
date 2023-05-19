@@ -8,7 +8,7 @@ var radius = Math.min(width, height) / 2 - margin;
 
 // append the svg object to the div called 'my_dataviz'
 var svg = d3
-   .select("#pie-4")
+   .select("#pie-11")
    .append("svg")
    .attr("width", width)
    .attr("height", height)
@@ -16,13 +16,13 @@ var svg = d3
    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 // Create dummy data
-var data = { a: 6, b: 2, c: 4, d: 4 };
+var data = { a: 4, b: 2, c: 2, d: 4, e: 4 };
 
 // set the color scale
 var color = d3
    .scaleOrdinal()
    .domain(data)
-   .range(["#eae74b", "#ffa500", "#ffa500", "#ffa500"]);
+   .range(["#ffa500", "#eae74b", "#9f2b68", "#eae74b", "#e44b8d"]);
 
 // Compute the position of each group on the pie:
 var pie = d3

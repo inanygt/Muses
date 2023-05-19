@@ -8,7 +8,7 @@ var radius = Math.min(width, height) / 2 - margin;
 
 // append the svg object to the div called 'my_dataviz'
 var svg = d3
-   .select("#pie-4")
+   .select("#pie-13")
    .append("svg")
    .attr("width", width)
    .attr("height", height)
@@ -16,22 +16,18 @@ var svg = d3
    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 // Create dummy data
-var data = { a: 6, b: 2, c: 4, d: 4 };
+var data = { a: 5, b: 5, c: 5, d: 5 };
 
 // set the color scale
 var color = d3
    .scaleOrdinal()
    .domain(data)
-   .range(["#eae74b", "#ffa500", "#ffa500", "#ffa500"]);
+   .range(["#eae74b", "#eae74b", "#9f2b68", "#ff0000"]);
 
 // Compute the position of each group on the pie:
-var pie = d3
-   .pie()
-   .value((d) => d.value)
-   .sort(function (a, b) {
-      return d3.ascending(a.key, b.key);
-   }); // This make sure that group order remains the same in the pie chart
-
+var pie = d3.pie().value(function (d) {
+   return d.value;
+});
 var data_ready = pie(d3.entries(data));
 
 // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
