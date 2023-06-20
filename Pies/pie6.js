@@ -8,7 +8,7 @@ var radius = Math.min(width, height) / 2 - margin;
 
 // append the svg object to the div called 'my_dataviz'
 var svg = d3
-   .select("#pie-2")
+   .select("#pie-6")
    .append("svg")
    .attr("width", width)
    .attr("height", height)

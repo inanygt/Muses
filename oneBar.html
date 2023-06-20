@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
    <head>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,10 +22,10 @@
       <link rel="stylesheet" href="style.css" />
    </head>
    <body>
-      <!-- Navbar -->
+      <!-- Nav -->
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Muses</a>
+            <a class="navbar-brand" href="index.html">Muses</a>
             <button
                class="navbar-toggler"
                type="button"
@@ -44,7 +44,7 @@
                         class="nav-link active"
                         aria-current="page"
                         href="odetojoy.html"
-                        >Ode To Joy</a
+                        >Songs</a
                      >
                   </li>
                   <li class="nav-item">
@@ -63,26 +63,65 @@
             </div>
          </div>
       </nav>
-      <!-- container -->
-      <div class="container d-flex flex-column pt-5" style="height: 92vh">
-         <!-- header -->
-         <h1>
-            Muses is a new language to learn music. It stands at the
-            intersection of Music, Technology and code.
-         </h1>
-      </div>
-      <!-- End of HTML -->
+      <h1>Ode to Joy Player</h1>
 
-      <!-- D3JS -->
-      <script src="https://d3js.org/d3.v4.js"></script>
-      <script src="pie.js"></script>
-      <script src="pieAnimate.js"></script>
-      <script src="pieLayer.js"></script>
+      <button onclick="playOdeToJoy()">Play Ode to Joy</button>
+      <button onclick="stopOdeToJoy()">Stop Ode to Joy</button>
 
-      <script src="clockwork.js"></script>
+      <script>
+         // Create an AudioContext
+         var audioContext = new (window.AudioContext ||
+            window.webkitAudioContext)();
 
-      <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+         // Create a function to play a single note
+         function playNote(frequency, duration) {
+            var oscillator = audioContext.createOscillator(); // Create an oscillator node
+            oscillator.type = "sine"; // Set the waveform type (sine, square, triangle, sawtooth)
+            oscillator.frequency.value = frequency; // Set the frequency of the oscillator
 
+            // Create a gain node to control the volume
+            var gainNode = audioContext.createGain();
+            oscillator.connect(gainNode); // Connect the oscillator to the gain node
+            gainNode.connect(audioContext.destination); // Connect the gain node to the audio output
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime); // Set the initial volume to 0
+
+            oscillator.start(); // Start the oscillator
+            gainNode.gain.linearRampToValueAtTime(
+               1,
+               audioContext.currentTime + 0.02
+            ); // Ramp up the volume to 1 quickly
+            gainNode.gain.linearRampToValueAtTime(
+               0,
+               audioContext.currentTime + duration - 0.02
+            ); // Ramp down the volume to 0 near the end
+            oscillator.stop(audioContext.currentTime + duration); // Stop the oscillator after the specified duration
+         }
+
+         // Play the "Ode to Joy" melody
+         function playOdeToJoy() {
+            var notes = [
+               { frequency: 329.63, duration: 2 }, // E for 1/2 beat
+               { frequency: 261.63, duration: 0.5 }, // Pause for 1/2 beat
+               { frequency: 349.23, duration: 1 }, // F for 1 beat
+            ];
+
+            var tempo = 90; // Adjust the tempo as desired
+            var noteDuration = (60 / tempo) * 2; // Duration of each 1/4 beat (seconds)
+
+            notes.forEach(function (note, index) {
+               setTimeout(function () {
+                  playNote(note.frequency, note.duration * noteDuration);
+               }, index * noteDuration * 1000);
+            });
+         }
+
+         // Function to stop the playback
+         function stopOdeToJoy() {
+            audioContext.close(); // Close the AudioContext to stop all sounds
+            audioContext = new (window.AudioContext ||
+               window.webkitAudioContext)(); // Create a new AudioContext for future use
+         }
+      </script>
       <!-- Bootstrap -->
       <script
          src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"

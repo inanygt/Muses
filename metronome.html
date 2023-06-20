@@ -19,13 +19,13 @@
          rel="stylesheet"
          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
       />
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="metrostyle.css" />
    </head>
    <body>
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Muses</a>
+            <a class="navbar-brand" href="index.html">Muses</a>
             <button
                class="navbar-toggler"
                type="button"
@@ -44,14 +44,14 @@
                         class="nav-link active"
                         aria-current="page"
                         href="odetojoy.html"
-                        >Ode To Joy</a
+                        >Songs</a
                      >
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="odeMas.html">odeToMas</a>
+                     <a class="nav-link" href="#">Features</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="oneBar.html">oneBar</a>
+                     <a class="nav-link" href="#">Pricing</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="metronome.html">Metronome</a>
@@ -65,12 +65,36 @@
       </nav>
       <!-- container -->
       <div class="container d-flex flex-column pt-5" style="height: 92vh">
-         <!-- header -->
-         <h1>
-            Muses is a new language to learn music. It stands at the
-            intersection of Music, Technology and code.
-         </h1>
+         <!-- Metronome -->
+         <div class="container">
+            <div class="metronome">
+               <div class="bpm-display">
+                  <span class="tempo">140</span>
+                  <span class="bpm">BPM</span>
+               </div>
+               <div class="tempo-text">Nice and steady</div>
+               <div class="tempo-settings">
+                  <div class="adjust-tempo-btn decrease-tempo">-</div>
+                  <input
+                     type="range"
+                     min="20"
+                     max="280"
+                     step="1"
+                     class="slider"
+                  />
+                  <div class="adjust-tempo-btn increase-tempo">+</div>
+               </div>
+               <div class="start-stop">START</div>
+               <div class="measures">
+                  <div class="subtract-beats stepper">-</div>
+                  <div class="measure-count">4</div>
+                  <div class="add-beats stepper">+</div>
+               </div>
+               <span class="beats-per-measure-text">Beats per measure</span>
+            </div>
+         </div>
       </div>
+
       <!-- End of HTML -->
 
       <!-- D3JS -->
@@ -78,12 +102,13 @@
       <script src="pie.js"></script>
       <script src="pieAnimate.js"></script>
       <script src="pieLayer.js"></script>
-
       <script src="clockwork.js"></script>
-
       <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
       <!-- Bootstrap -->
+
+      <script src="./metronome.js" type="module"></script>
+
       <script
          src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
          integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
