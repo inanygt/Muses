@@ -37,13 +37,6 @@
    margin-bottom: 1rem;
 }
 
-/* Pies */
-
-/* #pie-1 {
-   background-color: black;
-   width: 24%;
-} */
-
 .btn {
    margin: 0 0.3rem;
 }
@@ -51,32 +44,4 @@
 .row-btn {
    padding-top: 6rem;
    padding-bottom: 3rem;
-}
-
-/* Clock */
-
-.clock {
-   position: relative;
-   width: 100px;
-   height: 100px;
-   border: 2px solid black;
-   border-radius: 50%;
-}
-
-.hand {
-   position: absolute;
-   width: 2px;
-   height: 80px;
-   background-color: black;
-   left: 50%;
-   bottom: 50%;
-   transform-origin: bottom center;
-}
-
-.pieClock {
-   position: relative;
-   /* width: 100px; */
-   /* height: 100px; */
-   border: 2px solid black;
-   border-radius: 50%;
 }

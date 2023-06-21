@@ -1,16 +1,18 @@
 function rotateClockArm() {
-   var hourHand = document.getElementById("hourHand");
+   const hourHands = document.querySelectorAll(".hourHand");
 
    var rotationDegrees = 0;
-   var rotationSpeed = 1; // Adjust rotation speed as desired
+   var rotationSpeed = 2; // Adjust rotation speed as desired
 
    function animate() {
       rotationDegrees += rotationSpeed;
-      hourHand.style.transform = `rotate(${rotationDegrees}deg)`;
+      hourHands.forEach((hand) => {
+         hand.style.transform = `rotate(${rotationDegrees}deg)`;
+      });
       requestAnimationFrame(animate);
    }
 
    animate();
 }
 
-rotateClockArm();
+// rotateClockArm();
