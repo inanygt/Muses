@@ -21,6 +21,12 @@ const melody = [
    { note: "D4", duration: "2n" },
 ];
 
+// Set the desired BPM value
+const bpm = 90;
+
+// Set the transport tempo based on the BPM
+Tone.Transport.bpm.value = bpm;
+
 // Function to play the melody
 function playMelody() {
    let time = Tone.now(); // Get the current time
