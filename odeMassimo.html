@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ode to Joy Player</title>
+</head>
+<body>
+  <h1>Ode to Joy Player</h1>
+
+  <button onclick="playOdeToJoy()">Play Ode to Joy</button>
+  <button onclick="stopOdeToJoy()">Stop Ode to Joy</button>
+
+  <script>
+    // Create an AudioContext
+    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Create a function to play a single note
+    function playNote(frequency, duration) {
+      var oscillator = audioContext.createOscillator(); // Create an oscillator node
+      oscillator.type = 'sine'; // Set the waveform type (sine, square, triangle, sawtooth)
+      oscillator.frequency.value = frequency; // Set the frequency of the oscillator
+
+      // Create a gain node to control the volume
+      var gainNode = audioContext.createGain();
+      oscillator.connect(gainNode); // Connect the oscillator to the gain node
+      gainNode.connect(audioContext.destination); // Connect the gain node to the audio output
+      gainNode.gain.setValueAtTime(0, audioContext.currentTime); // Set the initial volume to 0
+
+      oscillator.start(); // Start the oscillator
+      gainNode.gain.linearRampToValueAtTime(1, audioContext.currentTime + 0.02); // Ramp up the volume to 1 quickly
+      gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + duration - 0.02); // Ramp down the volume to 0 near the end
+      oscillator.stop(audioContext.currentTime + duration); // Stop the oscillator after the specified duration
+    }
+
+    // Play the "Ode to Joy" melody
+    function playOdeToJoy() {
+      var notes = [
+        261.63, 261.63, 293.66, 261.63, 349.23, 329.63, 293.66, 261.63, 261.63,
+        293.66, 261.63, 392.00, 349.23, 293.66, 261.63, 261.63, 523.25, 440.00,
+        392.00, 349.23, 329.63, 293.66, 466.16, 466.16, 440.00, 349.23, 392.00,
+        349.23, 329.63, 293.66, 261.63, 261.63, 293.66, 261.63, 349.23, 329.63,
+        293.66, 261.63, 261.63, 293.66, 261.63, 392.00, 349.23, 293.66, 261.63,
+        261.63, 523.25, 440.00, 392.00, 349.23, 329.63, 293.66, 466.16, 466.16,
+        440.00, 349.23, 392.00, 349.23, 329.63, 293.66, 261.63
+      ];
+
+      var tempo = 150; // Adjust the tempo as desired
+      var noteDuration = 0.5; // Adjust the duration of each note (seconds)
+
+      var delay = (60 / tempo) * 1000; // Calculate the delay between notes based on the tempo
+
+      notes.forEach(function(note, index) {
+        setTimeout(function() {
+          playNote(note, noteDuration);
+        }, index * delay);
+      });
+    }
+
+    // Function to stop the playback
+    function stopOdeToJoy() {
+      audioContext.close(); // Close the AudioContext to stop all sounds
+      audioContext = new (window.AudioContext || window.webkitAudioContext)(); // Create a new AudioContext for future use
+    }
+  </script>
+</body>
+</html>
